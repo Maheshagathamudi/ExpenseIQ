@@ -1,0 +1,430 @@
+/* ========== BUDGETS PAGE SPECIFIC STYLES ========== */
+
+/* Budgets Grid Layout */
+.budgets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-content: start;
+}
+
+/* Budget Card Premium */
+.budget-card-premium {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.budget-card-premium:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.12);
+}
+
+.budget-card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0066FF, #00C2B3);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.budget-card-premium:hover::before {
+  transform: scaleX(1);
+}
+
+.budget-card-premium.exceeded {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.budget-card-premium.exceeded::before {
+  background: linear-gradient(90deg, #EF4444, #F87171);
+  transform: scaleX(1);
+}
+
+.budget-card-premium.warning {
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.budget-card-premium.warning::before {
+  background: linear-gradient(90deg, #F59E0B, #FBBF24);
+  transform: scaleX(1);
+}
+
+/* Budget Card Header */
+.budget-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.budget-category-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.budget-card-premium:hover .budget-category-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.budget-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.budget-category {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0A2540;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.budget-month {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  font-weight: 500;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Progress Section */
+.budget-progress-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+/* Circular Progress */
+.circular-progress {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.progress-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: #F1F5F9;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-percent {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0A2540;
+  line-height: 1.2;
+}
+
+.progress-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Budget Stats */
+.budget-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0F172A;
+  font-family: 'Inter', monospace;
+}
+
+.stat-value.spent {
+  color: #EF4444;
+}
+
+.stat-value.limit {
+  color: #0066FF;
+}
+
+.stat-value.remaining {
+  color: #10B981;
+}
+
+.stat-value.remaining.negative {
+  color: #EF4444;
+}
+
+/* Linear Progress Bar */
+.budget-linear-progress {
+  margin-bottom: 16px;
+}
+
+.progress-bar-bg {
+  height: 10px;
+  background: #F1F5F9;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #0066FF, #00C2B3);
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.progress-bar-fill.warning {
+  background: linear-gradient(90deg, #F59E0B, #FBBF24);
+}
+
+.progress-bar-fill.danger {
+  background: linear-gradient(90deg, #EF4444, #F87171);
+}
+
+/* Budget Status */
+.budget-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.status-badge.safe {
+  background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+  color: #059669;
+}
+
+.status-badge.warning {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  color: #D97706;
+}
+
+.status-badge.danger {
+  background: linear-gradient(135deg, #FEE2E2, #FECACA);
+  color: #DC2626;
+}
+
+.status-percent {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* Empty Budgets State */
+.empty-budgets {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.empty-budgets .empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #94A3B8;
+  text-align: center;
+}
+
+.empty-budgets .empty-icon {
+  opacity: 0.4;
+  margin-bottom: 8px;
+}
+
+.empty-budgets p {
+  font-weight: 600;
+  color: #64748B;
+  font-size: 1.1rem;
+}
+
+.empty-budgets span {
+  font-size: 0.9rem;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* Budgets Loading */
+.budgets-loading {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 16px;
+  color: #94A3B8;
+}
+
+/* ========== RESPONSIVE FOR BUDGETS ========== */
+@media (max-width: 1200px) {
+  .budgets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-progress-section {
+    gap: 20px;
+  }
+
+  .circular-progress {
+    width: 100px;
+    height: 100px;
+  }
+
+  .progress-percent {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .budget-card-premium {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .budget-category-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .budget-category {
+    font-size: 1rem;
+  }
+
+  .circular-progress {
+    width: 90px;
+    height: 90px;
+  }
+
+  .progress-percent {
+    font-size: 1.1rem;
+  }
+
+  .stat-value {
+    font-size: 0.85rem;
+  }
+
+  .budget-progress-section {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .budget-card-premium {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .budget-progress-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .circular-progress {
+    width: 100px;
+    height: 100px;
+  }
+
+  .budget-stats {
+    width: 100%;
+  }
+
+  .budget-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .status-percent {
+    font-size: 0.75rem;
+  }
+}
